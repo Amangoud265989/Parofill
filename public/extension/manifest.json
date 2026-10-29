@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ParroFill — AI Job Application Autofill & Assistant",
+  "version": "1.0.0",
+  "description": "Autofill job application forms on Workday, Greenhouse, Lever, LinkedIn, Indeed, and more with 1 click using your verified ParroFill profile.",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png",
+    "default_title": "ParroFill Job Autofill"
+  },
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png", "icon.svg"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
