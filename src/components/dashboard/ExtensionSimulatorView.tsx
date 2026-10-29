@@ -18,6 +18,9 @@ import {
   Terminal,
   FileCode,
   Check,
+  Key,
+  Copy,
+  RefreshCw,
 } from 'lucide-react';
 
 export const ExtensionSimulatorView: React.FC = () => {
@@ -29,6 +32,57 @@ export const ExtensionSimulatorView: React.FC = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [showReviewModal, setShowReviewModal] = useState(false);
   const [isDownloadingZip, setIsDownloadingZip] = useState(false);
+  const [syncToken, setSyncToken] = useState<string | null>(null);
+  const [isTokenLoading, setIsTokenLoading] = useState(false);
+  const [copiedToken, setCopiedToken] = useState(false);
+
+  // Fetch or generate sync token for extension
+  const loadSyncToken = async () => {
+    setIsTokenLoading(true);
+    try {
+      const token = localStorage.getItem('parrofill_token');
+      const res = await fetch('/api/extension/sync-token', {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSyncToken(data.token);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsTokenLoading(false);
+    }
+  };
+
+  const regenerateSyncToken = async () => {
+    setIsTokenLoading(true);
+    try {
+      const token = localStorage.getItem('parrofill_token');
+      const res = await fetch('/api/extension/sync-token', {
+        method: 'POST',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setSyncToken(data.token);
+        showNotification('Generated fresh Chrome Extension sync token!');
+      }
+    } catch (err) {
+      console.error(err);
+      showNotification('Failed to generate new token.');
+    } finally {
+      setIsTokenLoading(false);
+    }
+  };
+
+  const copyTokenToClipboard = () => {
+    if (!syncToken) return;
+    navigator.clipboard.writeText(syncToken);
+    setCopiedToken(true);
+    showNotification('Sync token copied! Paste it in the Chrome Extension popup.');
+    setTimeout(() => setCopiedToken(false), 2500);
+  };
 
   // Field state simulated on the external page
   const [fields, setFields] = useState({
@@ -221,6 +275,66 @@ export const ExtensionSimulatorView: React.FC = () => {
         </div>
       </div>
 
+      {/* Cloud Sync Token Card */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-100">
+          <div className="flex items-center gap-2.5">
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center font-bold">
+              <Key className="w-4 h-4" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-slate-900">Chrome Extension Cloud Sync Token</h3>
+              <p className="text-[11px] text-slate-500">Pair your browser extension with your ParroFill cloud profile</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {!syncToken ? (
+              <button
+                onClick={loadSyncToken}
+                disabled={isTokenLoading}
+                className="px-3.5 py-1.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors flex items-center gap-1.5 shadow-2xs"
+              >
+                <Key className="w-3.5 h-3.5" />
+                <span>{isTokenLoading ? 'Loading Token...' : 'Reveal My Sync Token'}</span>
+              </button>
+            ) : (
+              <button
+                onClick={regenerateSyncToken}
+                disabled={isTokenLoading}
+                className="px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1"
+                title="Regenerate token if compromised"
+              >
+                <RefreshCw className={`w-3.5 h-3.5 ${isTokenLoading ? 'animate-spin' : ''}`} />
+                <span>Regenerate</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {syncToken ? (
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="space-y-1">
+              <span className="text-[10px] uppercase font-mono tracking-wider font-bold text-slate-400">Your Active Sync Code</span>
+              <div className="font-mono text-xs font-bold text-slate-800 break-all select-all">
+                {syncToken}
+              </div>
+            </div>
+            <button
+              onClick={copyTokenToClipboard}
+              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0 shadow-xs"
+            >
+              {copiedToken ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>{copiedToken ? 'Copied!' : 'Copy Code'}</span>
+            </button>
+          </div>
+        ) : (
+          <p className="text-xs text-slate-500 italic">
+            Click "Reveal My Sync Token" to generate a secure 64-character token. When you paste this token into the extension popup under Settings, your latest resume updates and profile fields will automatically synchronize to your browser.
+          </p>
+        )}
+      </div>
+
       {/* Interactive In-App Testing Simulator */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -343,7 +457,7 @@ export const ExtensionSimulatorView: React.FC = () => {
                       fields.resumeAttached ? 'bg-emerald-50/50 border-emerald-400 text-slate-900 font-medium' : 'bg-white border-slate-200 text-slate-400'
                     }`}
                   >
-                    <span className="truncate">{fields.resumeAttached ? activeResume?.fileName || 'Elena_Rostova_Senior_2026.pdf' : 'Attach file'}</span>
+                    <span className="truncate">{fields.resumeAttached ? activeResume?.fileName || 'Aman_Goud_Senior_2026.pdf' : 'Attach file'}</span>
                     {fields.resumeAttached && <span className="text-[10px] text-emerald-700 font-bold shrink-0">Attached</span>}
                   </div>
                 </div>

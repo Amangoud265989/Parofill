@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ParrotLogo } from '../common/ParrotLogo';
-import { X, Mail, Lock, User, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { X, Mail, Lock, User, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export const AuthModal: React.FC = () => {
   const { isAuthModalOpen, setIsAuthModalOpen, authMode, setAuthMode, setCurrentUser, setViewMode, showNotification } = useApp();
@@ -12,61 +12,100 @@ export const AuthModal: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [forgotSent, setForgotSent] = useState(false);
 
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
   if (!isAuthModalOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-
-      if (authMode === 'forgot') {
+    if (authMode === 'forgot') {
+      setTimeout(() => {
+        setIsSubmitting(false);
         setForgotSent(true);
         showNotification('Password reset link sent to your email.');
-        return;
-      }
+      }, 500);
+      return;
+    }
 
-      const userName = name.trim() || (email ? email.split('@')[0] : 'Elena Rostova');
-      setCurrentUser({
-        name: userName,
-        email: email || 'elena.rostova@example.com',
-        role: 'user',
-        plan: 'Pro',
+    try {
+      const endpoint = authMode === 'signup' ? '/api/auth/register' : '/api/auth/login';
+      const payload = authMode === 'signup' 
+        ? { email: email.trim(), password, name: name.trim() } 
+        : { email: email.trim(), password };
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
 
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Authentication failed. Please check your credentials.');
+      }
+
+      if (data.token) {
+        localStorage.setItem('parrofill_token', data.token);
+      }
+
+      setCurrentUser(data.user);
       setIsAuthModalOpen(false);
-      setViewMode('dashboard');
-      showNotification(`Welcome to ParroFill, ${userName}!`);
-    }, 600);
+      showNotification(`Welcome, ${data.user.name}!`);
+
+      if (data.user.role === 'admin') {
+        setViewMode('admin');
+      } else {
+        setViewMode('dashboard');
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || 'An error occurred during authentication.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleQuickDemoLogin = async (demoEmail: string, demoPass: string) => {
+    setIsSubmitting(true);
+    setErrorMsg(null);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: demoEmail, password: demoPass }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.error || 'Demo login failed');
+      }
+      if (data.token) {
+        localStorage.setItem('parrofill_token', data.token);
+      }
+      setCurrentUser(data.user);
+      setIsAuthModalOpen(false);
+      showNotification(`Signed in as ${data.user.name}`);
+      if (data.user.role === 'admin') {
+        setViewMode('admin');
+      } else {
+        setViewMode('dashboard');
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Demo login failed.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleGoogleLogin = () => {
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setCurrentUser({
-        name: 'Elena Rostova',
-        email: 'elena.rostova@example.com',
-        role: 'user',
-        plan: 'Pro',
-      });
-      setIsAuthModalOpen(false);
-      setViewMode('dashboard');
-      showNotification('Signed in securely with Google.');
-    }, 500);
+    // Authenticate demo Google profile
+    handleQuickDemoLogin('amangoud@example.com', 'password123');
   };
 
   const handleAdminQuickSwitch = () => {
-    setCurrentUser({
-      name: 'System Administrator',
-      email: 'admin@parrofill.io',
-      role: 'admin',
-      plan: 'Career',
-    });
-    setIsAuthModalOpen(false);
-    setViewMode('admin');
-    showNotification('Switched to ParroFill Admin Dashboard.');
+    handleQuickDemoLogin('admin@parrofill.io', 'admin123');
   };
 
   return (
@@ -139,6 +178,13 @@ export const AuthModal: React.FC = () => {
           )}
 
           {/* Form */}
+          {errorMsg && (
+            <div className="p-2.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2">
+              <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+              <span>{errorMsg}</span>
+            </div>
+          )}
+
           {forgotSent ? (
             <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-center space-y-2">
               <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
@@ -166,7 +212,7 @@ export const AuthModal: React.FC = () => {
                     <input
                       type="text"
                       required
-                      placeholder="e.g. Elena Rostova"
+                      placeholder="e.g. Aman Goud"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       className="w-full pl-9 pr-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
@@ -262,15 +308,29 @@ export const AuthModal: React.FC = () => {
             )}
           </div>
 
-          {/* Quick Demo Admin Switcher for review */}
+          {/* Quick Demo Credentials for review */}
           <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
             <span>Demo Testing:</span>
-            <button
-              onClick={handleAdminQuickSwitch}
-              className="text-slate-600 hover:text-emerald-700 font-semibold underline"
-            >
-              Sign in as Admin
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail('amangoud@example.com');
+                  setPassword('password123');
+                }}
+                className="text-emerald-700 hover:text-emerald-800 font-semibold underline"
+              >
+                Aman Goud (Demo)
+              </button>
+              <span>·</span>
+              <button
+                type="button"
+                onClick={handleAdminQuickSwitch}
+                className="text-slate-600 hover:text-emerald-700 font-semibold underline"
+              >
+                Admin
+              </button>
+            </div>
           </div>
         </div>
       </div>

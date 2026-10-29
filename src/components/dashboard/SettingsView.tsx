@@ -66,7 +66,7 @@ export const SettingsView: React.FC = () => {
           <div>
             <label className="block font-semibold text-slate-600 mb-1">Logged In As</label>
             <div className="p-2.5 rounded-lg bg-slate-50 border border-slate-200 font-medium text-slate-900">
-              {currentUser?.name || 'Elena Rostova'}
+              {currentUser?.name || 'Aman Goud'}
             </div>
           </div>
 

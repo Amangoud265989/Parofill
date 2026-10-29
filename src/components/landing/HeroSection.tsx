@@ -147,7 +147,7 @@ export const HeroSection: React.FC = () => {
                             ? 'bg-emerald-50/50 border-emerald-400 text-slate-900 font-medium'
                             : 'bg-white border-slate-200 text-slate-400'
                         }`}>
-                          {step >= 1 ? 'Elena Rostova' : 'Detecting field...'}
+                          {step >= 1 ? 'Aman Goud' : 'Detecting field...'}
                         </div>
                       </div>
 
@@ -158,7 +158,7 @@ export const HeroSection: React.FC = () => {
                             ? 'bg-emerald-50/50 border-emerald-400 text-slate-900 font-medium'
                             : 'bg-white border-slate-200 text-slate-400'
                         }`}>
-                          {step >= 1 ? 'elena.rostova@example.com' : '...'}
+                          {step >= 1 ? 'amangoud@example.com' : '...'}
                         </div>
                       </div>
                     </div>
@@ -171,7 +171,7 @@ export const HeroSection: React.FC = () => {
                             ? 'bg-emerald-50/50 border-emerald-400 text-slate-900 font-medium'
                             : 'bg-white border-slate-200 text-slate-400'
                         }`}>
-                          <span className="truncate">{step >= 2 ? 'Elena_Rostova_Senior_2026.pdf' : 'Attach resume'}</span>
+                          <span className="truncate">{step >= 2 ? 'Aman_Goud_Senior_2026.pdf' : 'Attach resume'}</span>
                           {step >= 2 && <span className="text-[10px] text-emerald-700 font-bold shrink-0">94% ATS</span>}
                         </div>
                       </div>
@@ -183,7 +183,7 @@ export const HeroSection: React.FC = () => {
                             ? 'bg-emerald-50/50 border-emerald-400 text-slate-900 font-medium'
                             : 'bg-white border-slate-200 text-slate-400'
                         }`}>
-                          {step >= 2 ? 'linkedin.com/in/elena-rostova' : '...'}
+                          {step >= 2 ? 'linkedin.com/in/amangoud' : '...'}
                         </div>
                       </div>
                     </div>

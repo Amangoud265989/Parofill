@@ -1,21 +1,21 @@
 // ParroFill Chrome Extension - Popup Logic
 
 const defaultProfile = {
-  firstName: "Elena",
-  lastName: "Rostova",
-  email: "elena.rostova@example.com",
+  firstName: "Aman",
+  lastName: "Goud",
+  email: "amangoud@example.com",
   phone: "+1 (555) 234-5678",
   headline: "Senior Full-Stack & Frontend Engineer",
   summary: "Product-minded software engineer with 6+ years building scalable, user-centric web applications and distributed interfaces.",
   city: "Toronto",
   country: "Canada",
   postalCode: "M5V 2T6",
-  linkedInUrl: "https://linkedin.com/in/elena-rostova-dev",
-  githubUrl: "https://github.com/elena-rostova",
-  portfolioUrl: "https://elenarostova.dev",
+  linkedInUrl: "https://linkedin.com/in/amangoud",
+  githubUrl: "https://github.com/amangoud",
+  portfolioUrl: "https://amangoud.dev",
   workAuthorization: "Authorized to work in Canada and United States (TN eligible)",
   skills: ["TypeScript", "React", "Node.js", "Tailwind CSS", "Architecture"],
-  defaultResumeName: "Elena_Rostova_Senior_Engineer_2026.pdf"
+  defaultResumeName: "Aman_Goud_Senior_Engineer_2026.pdf"
 };
 
 document.addEventListener('DOMContentLoaded', async () => {

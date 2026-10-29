@@ -84,9 +84,9 @@ interface AppContextType {
 }
 
 const initialProfile: UserProfile = {
-  firstName: 'Elena',
-  lastName: 'Rostova',
-  email: 'elena.rostova@example.com',
+  firstName: 'Aman',
+  lastName: 'Goud',
+  email: 'amangoud@example.com',
   phone: '+1 (555) 234-5678',
   headline: 'Senior Full-Stack & Frontend Engineer',
   summary:
@@ -97,10 +97,10 @@ const initialProfile: UserProfile = {
   preferredCurrency: 'USD',
   dateFormat: 'YYYY-MM-DD',
   workAuthorization: 'Authorized to work in Canada and United States (TN eligible)',
-  linkedInUrl: 'https://linkedin.com/in/elena-rostova-dev',
-  githubUrl: 'https://github.com/elena-rostova',
-  portfolioUrl: 'https://elenarostova.dev',
-  personalWebsiteUrl: 'https://notes.elenarostova.dev',
+  linkedInUrl: 'https://linkedin.com/in/amangoud',
+  githubUrl: 'https://github.com/amangoud',
+  portfolioUrl: 'https://amangoud.dev',
+  personalWebsiteUrl: 'https://notes.amangoud.dev',
   experiences: [
     {
       id: 'exp-1',
@@ -167,7 +167,7 @@ const initialProfile: UserProfile = {
       title: 'HyperGrid UI Library',
       description: 'High-performance virtualized data grid for React handling 100k+ rows with smooth 60fps scrolling.',
       technologies: ['TypeScript', 'React', 'CSS Subgrid', 'Jest'],
-      link: 'https://github.com/elena-rostova/hypergrid-ui',
+      link: 'https://github.com/amangoud/hypergrid-ui',
     },
   ],
   languages: [
@@ -181,7 +181,7 @@ const initialResumes: ResumeDocument[] = [
     id: 'res-1',
     title: 'Senior Software Engineer (General)',
     targetRole: 'Senior Frontend / Full-Stack Engineer',
-    fileName: 'Elena_Rostova_Senior_Engineer_2026.pdf',
+    fileName: 'Aman_Goud_Senior_Engineer_2026.pdf',
     fileSize: '142 KB',
     updatedAt: '2026-10-15',
     isDefault: true,
@@ -192,7 +192,7 @@ const initialResumes: ResumeDocument[] = [
     id: 'res-2',
     title: 'Frontend Product Specialist',
     targetRole: 'Staff / Lead Product Engineer',
-    fileName: 'Elena_Rostova_Product_Engineer.pdf',
+    fileName: 'Aman_Goud_Product_Engineer.pdf',
     fileSize: '138 KB',
     updatedAt: '2026-09-28',
     isDefault: false,
@@ -428,8 +428,8 @@ const initialPricingPlans: PricingPlan[] = [
 const initialAdminUsers: AdminUser[] = [
   {
     id: 'usr-1',
-    name: 'Elena Rostova',
-    email: 'elena.rostova@example.com',
+    name: 'Aman Goud',
+    email: 'amangoud@example.com',
     plan: 'Pro',
     joinedDate: '2026-08-14',
     applicationsCount: 42,
@@ -469,7 +469,7 @@ const initialAdminUsers: AdminUser[] = [
 ];
 
 const initialAuditLogs: AuditLog[] = [
-  { id: 'log-1', timestamp: '2026-10-29 11:42:10', actor: 'Elena Rostova', event: 'Autofilled application form at Linear (14 fields)', status: 'success' },
+  { id: 'log-1', timestamp: '2026-10-29 11:42:10', actor: 'Aman Goud', event: 'Autofilled application form at Linear (14 fields)', status: 'success' },
   { id: 'log-2', timestamp: '2026-10-29 10:15:33', actor: 'Marcus Vance', event: 'Generated tailored resume for Staff Engineer role', status: 'success' },
   { id: 'log-3', timestamp: '2026-10-28 18:20:05', actor: 'System Security', event: 'Encrypted backup of profile storage completed', status: 'info' },
   { id: 'log-4', timestamp: '2026-10-28 14:02:18', actor: 'Aisha Al-Mansoor', event: 'Upgraded subscription tier to Pro (Stripe)', status: 'success' },
@@ -488,8 +488,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     role: 'user' | 'admin';
     plan: 'Free' | 'Pro' | 'Career';
   } | null>({
-    name: 'Elena Rostova',
-    email: 'elena.rostova@example.com',
+    name: 'Aman Goud',
+    email: 'amangoud@example.com',
     role: 'user',
     plan: 'Pro',
   });
@@ -505,7 +505,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       company: 'Linear',
       jobTitle: 'Senior Frontend Engineer',
       tone: 'Confident',
-      content: `Dear Hiring Team at Linear,\n\nI have followed Linear's engineering philosophy for years—particularly your insistence on keyboard-first velocity, sub-100ms interactions, and thoughtful design systems. As a Senior Frontend Engineer with 6+ years building high-frequency web products, I would love to bring my technical craftsmanship to your product pod.\n\nIn my recent role at AuraCloud Labs, I led the core web architecture modernization, cutting Largest Contentful Paint by 44% and developing a strict component system now shared across six squads. I care deeply about the details: predictable state machines, flawless accessibility, and pixel-precise execution.\n\nI look forward to discussing how my experience can support your mission to build the fastest software on the planet.\n\nSincerely,\nElena Rostova`,
+      content: `Dear Hiring Team at Linear,\n\nI have followed Linear's engineering philosophy for years—particularly your insistence on keyboard-first velocity, sub-100ms interactions, and thoughtful design systems. As a Senior Frontend Engineer with 6+ years building high-frequency web products, I would love to bring my technical craftsmanship to your product pod.\n\nIn my recent role at AuraCloud Labs, I led the core web architecture modernization, cutting Largest Contentful Paint by 44% and developing a strict component system now shared across six squads. I care deeply about the details: predictable state machines, flawless accessibility, and pixel-precise execution.\n\nI look forward to discussing how my experience can support your mission to build the fastest software on the planet.\n\nSincerely,\nAman Goud`,
       createdAt: '2026-10-18',
     },
   ]);
@@ -515,7 +515,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       id: 'msg-init',
       sender: 'assistant',
       content:
-        "Hello Elena! I'm ParroFill, your intelligent application assistant. I can help you tailor your resume, draft authentic answers to application questions, prepare for upcoming interviews, or optimize your cover letters. What are we working on today?",
+        "Hello Aman! I'm ParroFill, your intelligent application assistant. I can help you tailor your resume, draft authentic answers to application questions, prepare for upcoming interviews, or optimize your cover letters. What are we working on today?",
       timestamp: '10:00 AM',
     },
   ]);
@@ -539,6 +539,82 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }, 3800);
   };
 
+  // Helper for auth headers
+  const getAuthHeaders = () => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('parrofill_token') : null;
+    return {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    };
+  };
+
+  // Load user data and state from persistent backend on mount
+  useEffect(() => {
+    const token = localStorage.getItem('parrofill_token');
+
+    // 1. Fetch live pricing plans
+    fetch('/api/billing/plans')
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setPricingPlans(data);
+        }
+      })
+      .catch((err) => console.log('Could not fetch pricing plans:', err));
+
+    // 2. Fetch authenticated session
+    if (token) {
+      fetch('/api/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((userData) => {
+          if (userData && userData.user) {
+            setCurrentUser(userData.user);
+
+            // Fetch profile
+            fetch('/api/profile', { headers: { Authorization: `Bearer ${token}` } })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((profData) => {
+                if (profData && profData.profile) {
+                  setProfile(profData.profile);
+                }
+              })
+              .catch(console.error);
+
+            // Fetch resumes
+            fetch('/api/resumes', { headers: { Authorization: `Bearer ${token}` } })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((resumesData) => {
+                if (Array.isArray(resumesData) && resumesData.length > 0) {
+                  setResumes(resumesData);
+                }
+              })
+              .catch(console.error);
+
+            // Fetch applications
+            fetch('/api/applications', { headers: { Authorization: `Bearer ${token}` } })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((appsData) => {
+                if (Array.isArray(appsData) && appsData.length > 0) {
+                  setApplications(appsData);
+                }
+              })
+              .catch(console.error);
+
+            // Fetch cover letters
+            fetch('/api/cover-letters', { headers: { Authorization: `Bearer ${token}` } })
+              .then((r) => (r.ok ? r.json() : null))
+              .then((clData) => {
+                if (Array.isArray(clData) && clData.length > 0) {
+                  setCoverLetters(clData);
+                }
+              })
+              .catch(console.error);
+          }
+        })
+        .catch((err) => console.log('Auth me check failed:', err));
+    }
+  }, []);
+
   // Calculate profile completeness score
   const calculateProfileCompletion = (): number => {
     let score = 0;
@@ -555,18 +631,41 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const profileCompletionPercentage = calculateProfileCompletion();
 
   const updateProfile = (updated: Partial<UserProfile>) => {
-    setProfile((prev) => ({ ...prev, ...updated }));
+    const newProfile = { ...profile, ...updated };
+    setProfile(newProfile);
     showNotification('Profile updated successfully!');
+
+    // Persist to backend database
+    fetch('/api/profile', {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(newProfile),
+    }).catch((err) => console.error('Failed to sync profile with database:', err));
   };
 
   const addResume = (newResume: Omit<ResumeDocument, 'id' | 'updatedAt'>) => {
+    const tempId = `res-${Date.now()}`;
     const resume: ResumeDocument = {
       ...newResume,
-      id: `res-${Date.now()}`,
+      id: tempId,
       updatedAt: new Date().toISOString().split('T')[0],
     };
     setResumes((prev) => [resume, ...prev]);
     showNotification(`Resume "${resume.title}" added to your vault.`);
+
+    // Persist to backend
+    fetch('/api/resumes', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(resume),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((saved) => {
+        if (saved && saved.id) {
+          setResumes((prev) => prev.map((r) => (r.id === tempId ? saved : r)));
+        }
+      })
+      .catch((err) => console.error('Failed to save resume to database:', err));
   };
 
   const setDefaultResume = (id: string) => {
@@ -577,24 +676,49 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       }))
     );
     showNotification('Default resume updated.');
+
+    fetch(`/api/resumes/${id}`, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ isDefault: true }),
+    }).catch(console.error);
   };
 
   const deleteResume = (id: string) => {
     setResumes((prev) => prev.filter((r) => r.id !== id));
     showNotification('Resume removed.');
+
+    fetch(`/api/resumes/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    }).catch(console.error);
   };
 
   const activeResume = resumes.find((r) => r.isDefault) || resumes[0];
 
   const addApplication = (newApp: Omit<JobApplication, 'id' | 'dateApplied' | 'matchScore'>) => {
+    const tempId = `app-${Date.now()}`;
     const app: JobApplication = {
       ...newApp,
-      id: `app-${Date.now()}`,
+      id: tempId,
       dateApplied: new Date().toISOString().split('T')[0],
       matchScore: Math.floor(Math.random() * 15) + 85,
     };
     setApplications((prev) => [app, ...prev]);
     showNotification(`Added application for ${app.position} at ${app.company}.`);
+
+    fetch('/api/applications', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(app),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((saved) => {
+        if (saved && saved.id) {
+          setApplications((prev) => prev.map((a) => (a.id === tempId ? saved : a)));
+        }
+      })
+      .catch(console.error);
   };
 
   const updateApplicationStage = (id: string, stage: ApplicationStage) => {
@@ -605,6 +729,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     if (targetApp) {
       showNotification(`Moved ${targetApp.company} to ${stage.toUpperCase()}.`);
     }
+
+    fetch(`/api/applications/${id}`, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ stage }),
+    }).catch(console.error);
   };
 
   const updateApplication = (id: string, updates: Partial<JobApplication>) => {
@@ -612,11 +742,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       prev.map((app) => (app.id === id ? { ...app, ...updates } : app))
     );
     showNotification('Application details saved.');
+
+    fetch(`/api/applications/${id}`, {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(updates),
+    }).catch(console.error);
   };
 
   const deleteApplication = (id: string) => {
     setApplications((prev) => prev.filter((app) => app.id !== id));
     showNotification('Application removed.');
+
+    fetch(`/api/applications/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    }).catch(console.error);
   };
 
   const toggleSaveJob = (id: string) => {
@@ -626,18 +767,37 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const addCoverLetter = (doc: Omit<CoverLetterDoc, 'id' | 'createdAt'>) => {
+    const tempId = `cl-${Date.now()}`;
     const newDoc: CoverLetterDoc = {
       ...doc,
-      id: `cl-${Date.now()}`,
+      id: tempId,
       createdAt: new Date().toISOString().split('T')[0],
     };
     setCoverLetters((prev) => [newDoc, ...prev]);
     showNotification(`Saved cover letter for ${newDoc.company}.`);
+
+    fetch('/api/cover-letters', {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(newDoc),
+    })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((saved) => {
+        if (saved && saved.id) {
+          setCoverLetters((prev) => prev.map((cl) => (cl.id === tempId ? saved : cl)));
+        }
+      })
+      .catch(console.error);
   };
 
   const deleteCoverLetter = (id: string) => {
     setCoverLetters((prev) => prev.filter((doc) => doc.id !== id));
     showNotification('Cover letter deleted.');
+
+    fetch(`/api/cover-letters/${id}`, {
+      method: 'DELETE',
+      headers: getAuthHeaders(),
+    }).catch(console.error);
   };
 
   const sendAssistantMessage = async (content: string) => {
@@ -710,6 +870,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       prev.map((plan) => (plan.id === id ? { ...plan, monthlyPrice: monthly, annualPrice: annual } : plan))
     );
     showNotification('Pricing plan updated in database.');
+
+    fetch('/api/admin/plans', {
+      method: 'PUT',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ id, monthlyPrice: monthly, annualPrice: annual }),
+    }).catch(console.error);
   };
 
   const updateUserStatus = (id: string, status: 'active' | 'suspended') => {

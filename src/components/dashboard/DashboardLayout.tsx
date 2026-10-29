@@ -170,7 +170,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
               <div className="min-w-0">
                 <div className="text-xs font-bold text-slate-900 truncate">
-                  {currentUser?.name || 'Elena Rostova'}
+                  {currentUser?.name || 'Aman Goud'}
                 </div>
                 <div className="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
                   <span>{currentUser?.plan || 'Pro'} Plan</span>

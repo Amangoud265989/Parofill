@@ -240,28 +240,28 @@
           chrome.storage.local.get(['parrofill_profile'], (res) => {
             const p = res && res.parrofill_profile ? res.parrofill_profile : null;
             autofillPage(p || {
-              firstName: "Elena",
-              lastName: "Rostova",
-              email: "elena.rostova@example.com",
+              firstName: "Aman",
+              lastName: "Goud",
+              email: "amangoud@example.com",
               phone: "+1 (555) 234-5678",
               headline: "Senior Full-Stack & Frontend Engineer",
               city: "Toronto",
               country: "Canada",
-              linkedInUrl: "https://linkedin.com/in/elena-rostova-dev",
-              portfolioUrl: "https://elenarostova.dev"
+              linkedInUrl: "https://linkedin.com/in/amangoud",
+              portfolioUrl: "https://amangoud.dev"
             });
           });
         } else {
           autofillPage({
-            firstName: "Elena",
-            lastName: "Rostova",
-            email: "elena.rostova@example.com",
+            firstName: "Aman",
+            lastName: "Goud",
+            email: "amangoud@example.com",
             phone: "+1 (555) 234-5678",
             headline: "Senior Full-Stack & Frontend Engineer",
             city: "Toronto",
             country: "Canada",
-            linkedInUrl: "https://linkedin.com/in/elena-rostova-dev",
-            portfolioUrl: "https://elenarostova.dev"
+            linkedInUrl: "https://linkedin.com/in/amangoud",
+            portfolioUrl: "https://amangoud.dev"
           });
         }
       });

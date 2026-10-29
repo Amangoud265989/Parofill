@@ -71,7 +71,7 @@ export const AutofillDemo: React.FC = () => {
         location: `${profile.city}, ${profile.country}`,
         linkedin: profile.linkedInUrl,
         portfolio: profile.portfolioUrl,
-        resume: 'Elena_Rostova_Senior_Engineer_2026.pdf',
+        resume: 'Aman_Goud_Senior_Engineer_2026.pdf',
       }));
     }, 1100);
 
@@ -186,7 +186,7 @@ export const AutofillDemo: React.FC = () => {
                 <input
                   type="text"
                   readOnly
-                  placeholder="e.g. Elena"
+                  placeholder="e.g. Aman"
                   value={filledFields.firstName || ''}
                   className={`w-full px-3 py-2 text-xs rounded-lg border transition-colors ${
                     filledFields.firstName
@@ -203,7 +203,7 @@ export const AutofillDemo: React.FC = () => {
                 <input
                   type="text"
                   readOnly
-                  placeholder="e.g. Rostova"
+                  placeholder="e.g. Goud"
                   value={filledFields.lastName || ''}
                   className={`w-full px-3 py-2 text-xs rounded-lg border transition-colors ${
                     filledFields.lastName

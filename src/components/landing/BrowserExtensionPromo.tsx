@@ -137,13 +137,13 @@ export const BrowserExtensionPromo: React.FC = () => {
 
                   <div className="space-y-2 pt-1 opacity-70">
                     <div className="h-7 bg-slate-700/80 rounded px-2 flex items-center text-[10px] text-slate-300">
-                      First Name: Elena
+                      First Name: Aman
                     </div>
                     <div className="h-7 bg-slate-700/80 rounded px-2 flex items-center text-[10px] text-slate-300">
-                      Last Name: Rostova
+                      Last Name: Goud
                     </div>
                     <div className="h-7 bg-slate-700/80 rounded px-2 flex items-center text-[10px] text-slate-300">
-                      Resume: Elena_Rostova_Senior_2026.pdf
+                      Resume: Aman_Goud_Senior_2026.pdf
                     </div>
                     <div className="h-12 bg-slate-700/80 rounded p-2 text-[10px] text-slate-300">
                       Why this role: 6+ yrs engineering...
@@ -181,7 +181,7 @@ export const BrowserExtensionPromo: React.FC = () => {
                   <div className="space-y-1.5 text-[11px]">
                     <div className="flex items-center justify-between py-1 border-b border-slate-50">
                       <span className="text-slate-500">Default Resume</span>
-                      <span className="font-semibold text-slate-800">Elena_Rostova_Senior.pdf</span>
+                      <span className="font-semibold text-slate-800">Aman_Goud_Senior.pdf</span>
                     </div>
                     <div className="flex items-center justify-between py-1 border-b border-slate-50">
                       <span className="text-slate-500">Essay Question</span>
